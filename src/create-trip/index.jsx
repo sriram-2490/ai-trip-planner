@@ -26,7 +26,7 @@ function CreateTrip() {
   const [openDialog, setOpenDialog] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  const Navigate=useNavigate();
+  const Navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
     if (name === 'noofDays' && value > 5) {
@@ -91,7 +91,7 @@ function CreateTrip() {
         id: docId,
       });
       setLoading(false);
-      Navigate('/view-trip/'+docId)
+      Navigate('/view-trip/' + docId)
     } catch (error) {
       console.error('Error saving trip data:', error);
       setLoading(false);
@@ -118,18 +118,18 @@ function CreateTrip() {
   };
 
   return (
-    <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10 mx-40">
-      <h2 className="font-bold text-[#8B4513] text-3xl">
+    <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10 mx-5 sm:mx-10 md:mx-20 lg:mx-40">
+      <h2 className="font-bold text-[#8B4513] text-3xl sm:text-4xl md:text-5xl">
         Tell Us Your Travel Preference
       </h2>
-      <p className="mt-3 text-gray-500 text-xl">
+      <p className="mt-3 text-gray-500 text-xl sm:text-lg md:text-xl">
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
       </p>
 
-      <div className="mt-20 flex flex-col gap-9">
+      <div className="mt-10 sm:mt-12 md:mt-16 flex flex-col gap-6 sm:gap-8 lg:gap-10">
         {/* Destination Input */}
         <div>
-          <h2 className="text-xl my-3 font-medium">What is your destination?</h2>
+          <h2 className="text-xl sm:text-2xl font-medium">What is your destination?</h2>
           <GooglePlacesAutocomplete
             apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
             selectProps={{
@@ -144,7 +144,7 @@ function CreateTrip() {
 
         {/* Number of Days Input */}
         <div>
-          <h2 className="text-xl my-3 font-medium mt-10">
+          <h2 className="text-xl sm:text-2xl font-medium mt-6 sm:mt-8 md:mt-10">
             How many days are you planning for your trip?
           </h2>
           <Input
@@ -158,14 +158,13 @@ function CreateTrip() {
 
         {/* Budget Selection */}
         <div>
-          <h2 className="text-xl my-3 font-medium mt-10">What is your budget?</h2>
-          <div className="grid grid-cols-3 gap-5 mt-5">
+          <h2 className="text-xl sm:text-2xl font-medium mt-6 sm:mt-8 md:mt-10">What is your budget?</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mt-5">
             {SelectBudgetOptions.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleInputChange('budget', item.title)}
-                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${formData?.budget === item.title ? 'shadow-lg border-black' : ''
-                  }`}
+                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${formData?.budget === item.title ? 'shadow-lg border-black' : ''}`}
               >
                 <h2 className="text-3xl">{item.icon}</h2>
                 <h2 className="font-bold text-lg">{item.title}</h2>
@@ -177,16 +176,15 @@ function CreateTrip() {
 
         {/* Traveler Selection */}
         <div>
-          <h2 className="text-xl my-3 font-medium mt-10">
+          <h2 className="text-xl sm:text-2xl font-medium mt-6 sm:mt-8 md:mt-10">
             Who do you plan on traveling with on your next adventure?
           </h2>
-          <div className="grid grid-cols-4 gap-5 mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-5">
             {SelectTravelList.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleInputChange('traveler', item.people)}
-                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${formData?.traveler === item.people ? 'shadow-lg border-black' : ''
-                  }`}
+                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${formData?.traveler === item.people ? 'shadow-lg border-black' : ''}`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
                 <h2 className="font-bold text-lg">{item.title}</h2>
@@ -200,9 +198,11 @@ function CreateTrip() {
         <div className="my-10 flex items-center justify-center">
           <Button
             disabled={loading}
-            onClick={onGenerateTrip}>
+            onClick={onGenerateTrip}
+            className="w-full sm:w-auto"
+          >
             {loading ? (
-              <MdTravelExplore className='h-10 w-10 animate' />
+              <MdTravelExplore className='h-10 w-10 animate-spin' />
             ) : 'Generate Trip'}
           </Button>
         </div>
@@ -229,3 +229,4 @@ function CreateTrip() {
 }
 
 export default CreateTrip;
+
