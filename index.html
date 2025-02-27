@@ -3,8 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Vite + React</title>
+    <style>
+      /* Basic CSS for responsiveness */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      #root {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      /* Media Queries for different screen sizes */
+      @media (max-width: 1024px) {
+        #root {
+          max-width: 900px;
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #root {
+          max-width: 600px;
+          padding: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #root {
+          max-width: 90%;
+          padding: 5px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
